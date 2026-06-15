@@ -101,7 +101,6 @@ echo "=> zsh config"
 echo "🧩 Adding Flathub repository..."
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-
 echo "🌐 Flathub hinzufügen als Flatpak-Quelle..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo || { echo "❌ Fehler beim Hinzufügen von Flathub"; exit 1; }
 
@@ -109,26 +108,15 @@ echo "🚀 Installiere Flatpak-Apps..."
 flatpak install -y flathub com.spotify.Client
 flatpak install -y flathub org.libreoffice.LibreOffice
 flatpak install -y flathub com.discordapp.Discord
+flatpak install -y flathub md.obsidian.Obsidian
 
-echo "Snapd wird installiert"
-sudo dnf install snapd -y
-sudo ln -s /var/lib/snapd/snap /snap || true
-sudo systemctl enable --now snapd.socket
-
-sudo snap install obsidian --classic
-sudo dnf install -y protonvpn-cli
-  
  echo "=> Weitere Programme"
-  sudo dnf install btop obs-studio java-latest-openjdk java-latest-openjdk-devel krita fastfetch alacritty vlc -y
+  sudo dnf install btop obs-studio java-latest-openjdk java-latest-openjdk-devel krita fastfetch alacritty vlc protonvpn-cli -y
 
 echo "VS-Code"
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc 
   sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' 
   sudo dnf install code -y
-  echo "Brave"
-  sudo dnf install dnf-plugins-core -y
-  sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo -y
-  sudo dnf install brave-browser -y
 
 echo "Look and Feel"
 lookandfeeltool -a org.kde.breezedark.desktop
