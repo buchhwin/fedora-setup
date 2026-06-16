@@ -106,17 +106,21 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 echo "🚀 Installiere Flatpak-Apps..."
 flatpak install -y flathub com.spotify.Client
-flatpak install -y flathub org.libreoffice.LibreOffice
 flatpak install -y flathub com.discordapp.Discord
 flatpak install -y flathub md.obsidian.Obsidian
 
  echo "=> Weitere Programme"
-  sudo dnf install btop obs-studio java-latest-openjdk java-latest-openjdk-devel krita fastfetch alacritty vlc protonvpn-cli -y
+  sudo dnf install btop obs-studio java-latest-openjdk java-latest-openjdk-devel krita fastfetch alacritty vlc -y
 
 echo "VS-Code"
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc 
   sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' 
   sudo dnf install code -y
+
+echo "Brave-Origin"
+  sudo dnf install dnf-plugins-core -y
+  sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-nightly.s3.brave.com/brave-browser-nightly.repo -y
+  sudo dnf install brave-origin-nightly -y
 
 echo "Look and Feel"
 lookandfeeltool -a org.kde.breezedark.desktop
